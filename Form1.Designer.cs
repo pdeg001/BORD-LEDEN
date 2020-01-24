@@ -33,18 +33,23 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lstMember = new System.Windows.Forms.ListView();
-            this.colFirstName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colLastName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnNewClub = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.txtClubName = new System.Windows.Forms.TextBox();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnDeleteMember = new System.Windows.Forms.Button();
+            this.colLedenCount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lstClub
             // 
             this.lstClub.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colNaam});
+            this.colNaam,
+            this.colLedenCount});
             this.lstClub.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstClub.FullRowSelect = true;
+            this.lstClub.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lstClub.HideSelection = false;
             this.lstClub.LabelEdit = true;
             this.lstClub.LabelWrap = false;
@@ -55,12 +60,13 @@
             this.lstClub.TabIndex = 0;
             this.lstClub.UseCompatibleStateImageBehavior = false;
             this.lstClub.View = System.Windows.Forms.View.Details;
-            this.lstClub.SelectedIndexChanged += new System.EventHandler(this.lst_SelectedIndexChanged);
+            this.lstClub.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.LstClub_AfterLabelEdit);
+            this.lstClub.SelectedIndexChanged += new System.EventHandler(this.Lst_SelectedIndexChanged);
             // 
             // colNaam
             // 
             this.colNaam.Text = "Naam";
-            this.colNaam.Width = 313;
+            this.colNaam.Width = 369;
             // 
             // label1
             // 
@@ -84,8 +90,7 @@
             // lstMember
             // 
             this.lstMember.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colFirstName,
-            this.colLastName});
+            this.colName});
             this.lstMember.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstMember.FullRowSelect = true;
             this.lstMember.HideSelection = false;
@@ -95,20 +100,15 @@
             this.lstMember.MultiSelect = false;
             this.lstMember.Name = "lstMember";
             this.lstMember.Size = new System.Drawing.Size(459, 544);
-            this.lstMember.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lstMember.TabIndex = 3;
             this.lstMember.UseCompatibleStateImageBehavior = false;
             this.lstMember.View = System.Windows.Forms.View.Details;
+            this.lstMember.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.LstMember_AfterLabelEdit);
             // 
-            // colFirstName
+            // colName
             // 
-            this.colFirstName.Text = "Naam";
-            this.colFirstName.Width = 54;
-            // 
-            // colLastName
-            // 
-            this.colLastName.Text = "Achternaam";
-            this.colLastName.Width = 253;
+            this.colName.Text = "Naam";
+            this.colName.Width = 455;
             // 
             // btnNewClub
             // 
@@ -119,7 +119,7 @@
             this.btnNewClub.TabIndex = 4;
             this.btnNewClub.Text = "&Nieuw";
             this.btnNewClub.UseVisualStyleBackColor = true;
-            this.btnNewClub.Click += new System.EventHandler(this.btnNewClub_Click);
+            this.btnNewClub.Click += new System.EventHandler(this.BtnNewClub_Click);
             // 
             // button1
             // 
@@ -130,13 +130,48 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "Nieuw &Lid";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.NewMember);
+            // 
+            // txtClubName
+            // 
+            this.txtClubName.Location = new System.Drawing.Point(417, 625);
+            this.txtClubName.Name = "txtClubName";
+            this.txtClubName.Size = new System.Drawing.Size(270, 20);
+            this.txtClubName.TabIndex = 5;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnDelete.Location = new System.Drawing.Point(12, 585);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 4;
+            this.btnDelete.Text = "Verwijder";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
+            // 
+            // btnDeleteMember
+            // 
+            this.btnDeleteMember.Location = new System.Drawing.Point(694, 584);
+            this.btnDeleteMember.Name = "btnDeleteMember";
+            this.btnDeleteMember.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteMember.TabIndex = 6;
+            this.btnDeleteMember.Text = "Verwijder";
+            this.btnDeleteMember.UseVisualStyleBackColor = true;
+            // 
+            // colLedenCount
+            // 
+            this.colLedenCount.Text = "Leden";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(862, 657);
+            this.Controls.Add(this.btnDeleteMember);
+            this.Controls.Add(this.txtClubName);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnNewClub);
             this.Controls.Add(this.lstMember);
             this.Controls.Add(this.label2);
@@ -159,10 +194,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListView lstMember;
-        private System.Windows.Forms.ColumnHeader colFirstName;
-        private System.Windows.Forms.ColumnHeader colLastName;
+        private System.Windows.Forms.ColumnHeader colName;
         private System.Windows.Forms.Button btnNewClub;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtClubName;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnDeleteMember;
+        private System.Windows.Forms.ColumnHeader colLedenCount;
     }
 }
 

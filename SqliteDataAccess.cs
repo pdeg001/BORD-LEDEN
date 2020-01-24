@@ -1,33 +1,71 @@
-﻿using System;
+﻿using Dapper;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Configuration;
 using System.Data;
 using System.Data.SQLite;
-using Dapper;
+using System.Linq;
 
 namespace scorebord_leden
 {
     public class SqliteDataAccess
     {
-        public static List<Clubs> LoadClubs()
+        public static List<ClubModel> LoadClubs()
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<Clubs>("SELECT * FROM vereniging", new DynamicParameters());
+                //var output = cnn.Query<ClubModel>("SELECT * FROM vereniging", new DynamicParameters());
+                var output = cnn.Query<ClubModel>("select vereniging.*, count(leden.Name) as ledenCount from vereniging vereniging inner join leden leden on leden.Ver_Id = vereniging.id group by vereniging.Naam", new DynamicParameters());
                 return output.ToList();
             }
         }
 
-        public static void SaveClub(Clubs clubs)
+        public static void SaveClub(ClubModel clubs)
         {
-            string Name = "Verenigings Naam";
-            string col = "Naam";
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute($"INSERT INTO vereniging (Naam) VALUES ({Name})", clubs);
+                cnn.Execute($"INSERT INTO vereniging (Naam) VALUES (@Naam)", clubs);
+            }
+        }
+
+        public static void UpdateClub(ClubModel clubs)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute($"UPDATE vereniging SET Naam = @Naam WHERE Id = @Id", clubs);
+            }
+        }
+
+        public static void DeleteClub(ClubModel clubs)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute($"DELETE FROM vereniging WHERE Id = @Id", clubs);
+            }
+        }
+
+
+        public static List<LedenModel> GetLeden(LedenModel lm)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<LedenModel>("SELECT * FROM leden WHERE Ver_Id = @IdClub", lm); // new DynamicParameters());
+                return output.ToList();
+            }
+        }
+
+        public static void SaveLeden(LedenModel lm)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute($"INSERT INTO leden (Name, Ver_id) VALUES (@Name, @IdClub)", lm);
+            }
+        }
+
+        public static void UpdateLeden(LedenModel lm)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute($"UPDATE leden SET Name = @Name WHERE Id = @Id", lm);
             }
         }
 

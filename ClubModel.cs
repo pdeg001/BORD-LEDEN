@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace scorebord_leden
 {
-    public class Clubs
+    public class ClubModel
     {
         public int Id { get; set; }
         public string Naam { get; set; }
