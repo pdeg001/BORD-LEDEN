@@ -12,44 +12,68 @@ namespace scorebord_leden
 {
     public partial class MainForm : Form
     {
+        List<Clubs> vereniging = new List<Clubs>();
         public MainForm()
         {
             InitializeComponent();
+
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+
+            SetClubList();
+
+            //lstClub.Items.Clear();
+            //lstMember.Items.Clear();
+            //vereniging = SqliteDataAccess.LoadClubs();
             
+            //var club = GetClubList();
+            //foreach(var clubList in vereniging)
+            //{
+            //    var row = new String[] { clubList.Naam};
+            //    var lvi = new ListViewItem(row);
+            //    lvi.Tag = clubList.Id; //clubList.Id;
+            //    lstClub.Items.Add(lvi);
+            //}
+
+            //var member = GetClubMember();
+            //foreach (var mem in member)
+            //{
+            //    var row = new String[] { mem.FirstName, mem.LastName };
+            //    var lvi = new ListViewItem(row);
+            //    lvi.Tag = "wdwd"; //clubList.Id;
+            //    lstMember.Items.Add(lvi);
+            //}
+            
+           
+            // ResizeList(lstMember);
+            //ResizeList(lstClub);
+        }
+
+        private void SetClubList()
+        {
             lstClub.Items.Clear();
-            lstMember.Items.Clear();
-            var club = GetClubList();
-            foreach(var clubList in club)
+            vereniging = SqliteDataAccess.LoadClubs();
+
+            //var club = GetClubList();
+            foreach (var clubList in vereniging)
             {
-                var row = new String[] { clubList.ClubName};
+                var row = new String[] { clubList.Naam };
                 var lvi = new ListViewItem(row);
-                lvi.Tag = "wdwd"; //clubList.Id;
+                lvi.Tag = clubList.Id; //clubList.Id;
                 lstClub.Items.Add(lvi);
             }
 
-            var member = GetClubMember();
-            foreach (var mem in member)
-            {
-                var row = new String[] { mem.FirstName, mem.LastName };
-                var lvi = new ListViewItem(row);
-                lvi.Tag = "wdwd"; //clubList.Id;
-                lstMember.Items.Add(lvi);
-            }
-
-           
-            ResizeList(lstMember);
             ResizeList(lstClub);
         }
+
 
         private List<Clubs> GetClubList()
         {
             var list = new List<Clubs>();
-            list.Add(new Clubs() { ClubName = "bv Heerhugowaard" });
-            list.Add(new Clubs() { ClubName = "3bv Parelhof" });
+            list.Add(new Clubs() { Naam = "bv Heerhugowaard" });
+            list.Add(new Clubs() { Naam = "3bv Parelhof" });
 
             return list;
         }
@@ -90,6 +114,14 @@ namespace scorebord_leden
             lst.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             lst.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
-      
+
+        private void btnNewClub_Click(object sender, EventArgs e)
+        {
+            Clubs clubModel = new Clubs();
+            clubModel.Naam = "";
+
+            SqliteDataAccess.SaveClub(clubModel);
+            SetClubList();
+        }
     }
 }

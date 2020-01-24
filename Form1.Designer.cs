@@ -35,6 +35,8 @@
             this.lstMember = new System.Windows.Forms.ListView();
             this.colFirstName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colLastName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnNewClub = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstClub
@@ -50,7 +52,6 @@
             this.lstClub.MultiSelect = false;
             this.lstClub.Name = "lstClub";
             this.lstClub.Size = new System.Drawing.Size(373, 544);
-            this.lstClub.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lstClub.TabIndex = 0;
             this.lstClub.UseCompatibleStateImageBehavior = false;
             this.lstClub.View = System.Windows.Forms.View.Details;
@@ -109,11 +110,34 @@
             this.colLastName.Text = "Achternaam";
             this.colLastName.Width = 253;
             // 
+            // btnNewClub
+            // 
+            this.btnNewClub.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnNewClub.Location = new System.Drawing.Point(310, 585);
+            this.btnNewClub.Name = "btnNewClub";
+            this.btnNewClub.Size = new System.Drawing.Size(75, 23);
+            this.btnNewClub.TabIndex = 4;
+            this.btnNewClub.Text = "&Nieuw";
+            this.btnNewClub.UseVisualStyleBackColor = true;
+            this.btnNewClub.Click += new System.EventHandler(this.btnNewClub_Click);
+            // 
+            // button1
+            // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button1.Location = new System.Drawing.Point(775, 585);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Nieuw &Lid";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(862, 657);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnNewClub);
             this.Controls.Add(this.lstMember);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -137,6 +161,8 @@
         private System.Windows.Forms.ListView lstMember;
         private System.Windows.Forms.ColumnHeader colFirstName;
         private System.Windows.Forms.ColumnHeader colLastName;
+        private System.Windows.Forms.Button btnNewClub;
+        private System.Windows.Forms.Button button1;
     }
 }
 

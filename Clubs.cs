@@ -8,13 +8,8 @@ namespace scorebord_leden
 {
     public class Clubs
     {
-      //  public int Club()
-      //  {
-      //      Id = new Random().Next(1, 10000);
-      //  }
-
         public int Id { get; set; }
-        public string ClubName { get; set; }
+        public string Naam { get; set; }
 
     }
 }
