@@ -11,5 +11,6 @@ namespace scorebord_leden
         public int Id { get; set; }
         public string Naam { get; set; }
 
+        public string ledenCount { get; set; }
     }
 }

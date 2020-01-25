@@ -13,8 +13,8 @@ namespace scorebord_leden
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                //var output = cnn.Query<ClubModel>("SELECT * FROM vereniging", new DynamicParameters());
-                var output = cnn.Query<ClubModel>("select vereniging.*, count(leden.Name) as ledenCount from vereniging vereniging inner join leden leden on leden.Ver_Id = vereniging.id group by vereniging.Naam", new DynamicParameters());
+               // var output = cnn.Query<ClubModel>("SELECT * FROM vereniging", new DynamicParameters());
+                var output = cnn.Query<ClubModel>("select vereniging.*, count(leden.Name) as ledenCount from vereniging vereniging left join leden leden on leden.Ver_Id = vereniging.id group by 1", new DynamicParameters());
                 return output.ToList();
             }
         }

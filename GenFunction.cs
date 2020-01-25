@@ -35,16 +35,17 @@ namespace scorebord_leden
             lv.EnsureVisible(lastItem);
         }
 
-        public static void GetLvPervIndexAfterDelete(ListView lv)
+        public static void GetLvPervIndexAfterDelete(ListView lv, int prevIndex)
         {
             int itemCount = GetLvItemCount(lv);
 
-            if (itemCount == 1)
+            if (itemCount > 1)
             {
-                lv.Items[itemCount - 1].Selected = true;
+                lv.Items[prevIndex - 1].Selected = true;
                 lv.Select();
-                lv.EnsureVisible(itemCount - 1);
+                lv.EnsureVisible(prevIndex - 1);
             }
+            else { }
         }
 
         public static int GetLvItemCount(ListView lv)
@@ -52,5 +53,10 @@ namespace scorebord_leden
             return lv.Items.Count - 1;
         }
 
+        public static void SetLvEditAfterNew(ListView lv)
+        {
+            SetLvLastItem(lv);
+            lv.Items[lv.Items.Count - 1].BeginEdit();
+        }
     }
 }

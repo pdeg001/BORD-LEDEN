@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.lstClub = new System.Windows.Forms.ListView();
             this.colNaam = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colLedenCount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lstMember = new System.Windows.Forms.ListView();
@@ -39,7 +41,6 @@
             this.txtClubName = new System.Windows.Forms.TextBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnDeleteMember = new System.Windows.Forms.Button();
-            this.colLedenCount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lstClub
@@ -66,12 +67,18 @@
             // colNaam
             // 
             this.colNaam.Text = "Naam";
-            this.colNaam.Width = 369;
+            this.colNaam.Width = 271;
+            // 
+            // colLedenCount
+            // 
+            this.colLedenCount.Text = "Leden";
+            this.colLedenCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.colLedenCount.Width = 77;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 618);
+            this.label1.Location = new System.Drawing.Point(388, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 1;
@@ -112,24 +119,28 @@
             // 
             // btnNewClub
             // 
+            this.btnNewClub.BackColor = System.Drawing.SystemColors.Control;
             this.btnNewClub.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnNewClub.Location = new System.Drawing.Point(310, 585);
+            this.btnNewClub.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewClub.Location = new System.Drawing.Point(300, 584);
             this.btnNewClub.Name = "btnNewClub";
-            this.btnNewClub.Size = new System.Drawing.Size(75, 23);
+            this.btnNewClub.Size = new System.Drawing.Size(85, 35);
             this.btnNewClub.TabIndex = 4;
             this.btnNewClub.Text = "&Nieuw";
-            this.btnNewClub.UseVisualStyleBackColor = true;
+            this.btnNewClub.UseVisualStyleBackColor = false;
             this.btnNewClub.Click += new System.EventHandler(this.BtnNewClub_Click);
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.SystemColors.Control;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button1.Location = new System.Drawing.Point(775, 585);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(765, 584);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(85, 35);
             this.button1.TabIndex = 4;
             this.button1.Text = "Nieuw &Lid";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.NewMember);
             // 
             // txtClubName
@@ -141,27 +152,28 @@
             // 
             // btnDelete
             // 
+            this.btnDelete.BackColor = System.Drawing.SystemColors.Control;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.Location = new System.Drawing.Point(12, 585);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.Size = new System.Drawing.Size(85, 35);
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "Verwijder";
-            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // btnDeleteMember
             // 
-            this.btnDeleteMember.Location = new System.Drawing.Point(694, 584);
+            this.btnDeleteMember.BackColor = System.Drawing.SystemColors.Control;
+            this.btnDeleteMember.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnDeleteMember.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteMember.Location = new System.Drawing.Point(671, 584);
             this.btnDeleteMember.Name = "btnDeleteMember";
-            this.btnDeleteMember.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteMember.Size = new System.Drawing.Size(85, 35);
             this.btnDeleteMember.TabIndex = 6;
             this.btnDeleteMember.Text = "Verwijder";
-            this.btnDeleteMember.UseVisualStyleBackColor = true;
-            // 
-            // colLedenCount
-            // 
-            this.colLedenCount.Text = "Leden";
+            this.btnDeleteMember.UseVisualStyleBackColor = false;
             // 
             // MainForm
             // 
@@ -178,6 +190,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lstClub);
             this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Club Leden";
