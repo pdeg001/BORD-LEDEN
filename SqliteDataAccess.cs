@@ -69,6 +69,14 @@ namespace scorebord_leden
             }
         }
 
+        public static void DeleteMember (LedenModel lm)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute($"DELETE FROM leden WHERE Id = @Id", lm);
+            }
+        }
+
         private static string LoadConnectionString(string id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;

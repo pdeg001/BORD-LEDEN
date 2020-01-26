@@ -31,23 +31,22 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.lstClub = new System.Windows.Forms.ListView();
             this.colNaam = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colLedenCount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lstMember = new System.Windows.Forms.ListView();
             this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnNewClub = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.txtClubName = new System.Windows.Forms.TextBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnDeleteMember = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnCloseApp = new System.Windows.Forms.Button();
+            this.BtnCopyDb = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstClub
             // 
             this.lstClub.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colNaam,
-            this.colLedenCount});
+            this.colNaam});
             this.lstClub.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstClub.FullRowSelect = true;
             this.lstClub.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -69,21 +68,6 @@
             this.colNaam.Text = "Naam";
             this.colNaam.Width = 271;
             // 
-            // colLedenCount
-            // 
-            this.colLedenCount.Text = "Leden";
-            this.colLedenCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.colLedenCount.Width = 77;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(388, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -96,6 +80,7 @@
             // 
             // lstMember
             // 
+            this.lstMember.BackColor = System.Drawing.SystemColors.Window;
             this.lstMember.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colName});
             this.lstMember.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -143,13 +128,6 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.NewMember);
             // 
-            // txtClubName
-            // 
-            this.txtClubName.Location = new System.Drawing.Point(417, 625);
-            this.txtClubName.Name = "txtClubName";
-            this.txtClubName.Size = new System.Drawing.Size(270, 20);
-            this.txtClubName.TabIndex = 5;
-            // 
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.SystemColors.Control;
@@ -174,27 +152,63 @@
             this.btnDeleteMember.TabIndex = 6;
             this.btnDeleteMember.Text = "Verwijder";
             this.btnDeleteMember.UseVisualStyleBackColor = false;
+            this.btnDeleteMember.Click += new System.EventHandler(this.btnDeleteMember_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(392, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(54, 20);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Leden";
+            // 
+            // btnCloseApp
+            // 
+            this.btnCloseApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCloseApp.Location = new System.Drawing.Point(765, 654);
+            this.btnCloseApp.Name = "btnCloseApp";
+            this.btnCloseApp.Size = new System.Drawing.Size(85, 35);
+            this.btnCloseApp.TabIndex = 7;
+            this.btnCloseApp.Text = "Af&sluiten";
+            this.btnCloseApp.UseVisualStyleBackColor = true;
+            this.btnCloseApp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CloseApplication);
+            // 
+            // BtnCopyDb
+            // 
+            this.BtnCopyDb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCopyDb.Location = new System.Drawing.Point(12, 654);
+            this.BtnCopyDb.Name = "BtnCopyDb";
+            this.BtnCopyDb.Size = new System.Drawing.Size(159, 35);
+            this.BtnCopyDb.TabIndex = 8;
+            this.BtnCopyDb.Text = "Database kopiëren";
+            this.BtnCopyDb.UseVisualStyleBackColor = true;
+            this.BtnCopyDb.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnCopyDb_MouseUp);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(862, 657);
+            this.ClientSize = new System.Drawing.Size(863, 713);
+            this.Controls.Add(this.BtnCopyDb);
+            this.Controls.Add(this.btnCloseApp);
             this.Controls.Add(this.btnDeleteMember);
-            this.Controls.Add(this.txtClubName);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnNewClub);
             this.Controls.Add(this.lstMember);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.lstClub);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Club Leden";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,16 +218,16 @@
 
         private System.Windows.Forms.ListView lstClub;
         private System.Windows.Forms.ColumnHeader colNaam;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListView lstMember;
         private System.Windows.Forms.ColumnHeader colName;
         private System.Windows.Forms.Button btnNewClub;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox txtClubName;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnDeleteMember;
-        private System.Windows.Forms.ColumnHeader colLedenCount;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnCloseApp;
+        private System.Windows.Forms.Button BtnCopyDb;
     }
 }
 

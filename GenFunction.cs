@@ -39,7 +39,7 @@ namespace scorebord_leden
         {
             int itemCount = GetLvItemCount(lv);
 
-            if (itemCount > 1)
+            if (itemCount >= 0)
             {
                 lv.Items[prevIndex - 1].Selected = true;
                 lv.Select();
@@ -57,6 +57,31 @@ namespace scorebord_leden
         {
             SetLvLastItem(lv);
             lv.Items[lv.Items.Count - 1].BeginEdit();
+        }
+
+        public static void SetLvFirstRow(ListView lv)
+        {
+            int index = GetLvIndex(lv);
+            if (index == 0)
+                return;
+            lv.Items[0].Selected = true;
+            lv.Select();
+            lv.EnsureVisible(0);
+        }
+
+        public static string SelectFolder()
+        {
+            using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
+            {
+                dialog.Description = "Selecteer de folder om de database naartoe te kopiëren";
+                DialogResult result = dialog.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(dialog.SelectedPath))
+                    return dialog.SelectedPath;
+                else
+                    return "";
+
+            }
         }
     }
 }

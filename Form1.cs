@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Squirrel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -20,13 +22,30 @@ namespace scorebord_leden
         public MainForm()
         {
             InitializeComponent();
-
+            CheckForUpdate();
+            AddVersionNumber();
         }
 
+        private async Task CheckForUpdate()
+        {
+            using(var manager = new UpdateManager(@"L:\GITHUB"))
+            {
+                await manager.UpdateApp();
+            }
+        }
+
+        private void AddVersionNumber()
+        {
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+
+            this.Text += $" v{versionInfo.FileVersion}";
+        }
         private void MainForm_Load(object sender, EventArgs e)
         {
             SetMbm();
             SetClubList();
+            GenFunction.SetLvFirstRow(lstClub);
         }
 
         private void SetMbm()
@@ -38,6 +57,8 @@ namespace scorebord_leden
         }
 
 
+
+
         private void SetClubList()
         {
             lstClub.Items.Clear();
@@ -45,7 +66,7 @@ namespace scorebord_leden
 
             foreach (var clubList in vereniging)
             {
-                var row = new String[] { clubList.Naam, clubList.ledenCount };
+                var row = new String[] { clubList.Naam };
                 var lvi = new ListViewItem(row)
                 {
                     Tag = clubList.Id //clubList.Id;
@@ -53,8 +74,8 @@ namespace scorebord_leden
                 };
                 lstClub.Items.Add(lvi);
             }
-            lstClub.Columns[0].Width = 287;
-            lstClub.Columns[1].Width = 65;
+            lstClub.Columns[0].Width = -2;
+            //lstClub.Columns[1].Width = 75;
         }
 
 
@@ -67,7 +88,6 @@ namespace scorebord_leden
 
             ListViewItem item = lst.SelectedItems[0];
             clubId = Int32.Parse(item.Tag.ToString());
-            label1.Text = $"SELECTED CLUB ID : {clubId}";//$"ID : {item.Tag} VALUE : {item.Text}";
         }
 
         private void Lst_SelectedIndexChanged(object sender, EventArgs e)
@@ -86,24 +106,20 @@ namespace scorebord_leden
 
         private void BtnNewClub_Click(object sender, EventArgs e)
         {
+            CreateNewClub();
+        }
+
+        private void CreateNewClub()
+        {
             ClubModel clubModel = new ClubModel();
             clubModel.Naam = "Naam vereniging";
 
             SqliteDataAccess.SaveClub(clubModel);
-            
+
             SetClubList();
             lstClub.Refresh();
-           
+
             GenFunction.SetLvEditAfterNew(lstClub);
-            return;
-            int lastItem = lstClub.Items.Count-1;
-            lstClub.Items[lastItem].Selected = true;
-            lstClub.Select();
-            lstClub.EnsureVisible(lastItem);
-            lstClub.Items[lastItem].Selected = true;
-            lstClub.EnsureVisible(lastItem);
-            label1.Text = lastItem.ToString();
-            lstClub.Items[lastItem].BeginEdit();
         }
 
         private void LstClub_AfterLabelEdit(object sender, LabelEditEventArgs e)
@@ -117,16 +133,12 @@ namespace scorebord_leden
 
             ListViewItem item = lst.SelectedItems[0];
 
-            label1.Text = $"ID : {item.Tag} VALUE : {item.Text}";
             ClubModel clubModel = new ClubModel();
             clubModel.Id = Int32.Parse(item.Tag.ToString());
             clubModel.Naam = e.Label.ToString();
 
             SqliteDataAccess.UpdateClub(clubModel);
             SetClubList();
-          //  lst.Columns[0].Width = -2;
-
-         //   label1.Text = e.Label.ToString();
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
@@ -155,10 +167,8 @@ namespace scorebord_leden
             clubModel.Naam = item.Text;
 
             SqliteDataAccess.DeleteClub(clubModel);
-            lst.BeginUpdate();
             lst.Items[GenFunction.GetLvIndex(lst)].Remove();
             GenFunction.GetLvPervIndexAfterDelete(lst, index);
-            lst.EndUpdate();
            // SetClubList();
            // GenFunction.SetLvLastItem(lstClub);
            // int lastItem = lstClub.Items.Count - 1;
@@ -189,6 +199,11 @@ namespace scorebord_leden
 
         private void NewMember(object sender, MouseEventArgs e)
         {
+            CreateNewMember();
+        }
+
+        private void CreateNewMember()
+        {
             LedenModel lm = new LedenModel
             {
                 IdClub = clubId,
@@ -196,6 +211,7 @@ namespace scorebord_leden
             };
             SqliteDataAccess.SaveLeden(lm);
             SetLedenList();
+            GenFunction.SetLvEditAfterNew(lstMember);
         }
 
         private void LstMember_AfterLabelEdit(object sender, LabelEditEventArgs e)
@@ -223,5 +239,95 @@ namespace scorebord_leden
 
             
         }
+
+        private void btnDeleteMember_Click(object sender, EventArgs e)
+        {
+
+            ListView lst = lstMember;
+            int index = GenFunction.GetLvIndex(lst);
+            if (lst.SelectedItems.Count == 0)
+                return;
+
+            //#if DEBUG == false
+            var result = MessageBox.Show("Verenigingslid verwijderen?\nDit kan niet ongedaan gemaakt worden!", "Vereniging - Leden",
+                                   MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Question);
+            if(result == DialogResult.No)
+            {
+                return;
+            }
+            //#endif
+           
+
+            ListViewItem item = lst.SelectedItems[0];
+
+            LedenModel ledenModel = new LedenModel();
+            ledenModel.Id = Int32.Parse(item.Tag.ToString());
+            ledenModel.Name = item.Text;
+
+            SqliteDataAccess.DeleteMember(ledenModel);
+
+            lst.Items[GenFunction.GetLvIndex(lst)].Remove();
+            GenFunction.GetLvPervIndexAfterDelete(lst, index);
+        }
+
+        private void CloseApplication()
+        {
+            var result = MessageBox.Show("Applicatie sluiten", "Vereniging - Leden",
+                                   MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void MainForm_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.N && e.Alt == true)
+                CreateNewClub();
+            if (e.KeyCode == Keys.L && e.Alt == true)
+                CreateNewMember();
+            if (e.KeyCode == Keys.S && e.Alt == true)
+                CloseApplication();
+        }
+
+        private void CloseApplication(object sender, MouseEventArgs e)
+        {
+            CloseApplication();
+        }
+
+        
+    
+    private void CopyDb()
+        {
+            string fileName = "bord_leden.db";
+            string dstFolder = GenFunction.SelectFolder();
+            string srcFolder = AppDomain.CurrentDomain.BaseDirectory;
+#if DEBUG
+            srcFolder += @"\" + fileName;
+#else
+            srcFolder += fileName;
+#endif
+            dstFolder += @"\" + fileName;
+
+            System.IO.File.Copy(srcFolder, dstFolder, true);
+
+            if (System.IO.File.Exists(dstFolder) == true)
+                MessageBox.Show("Database gekopieerd", "Vereniging - Leden",
+                                  MessageBoxButtons.OK,
+                                   MessageBoxIcon.Information);
+            else
+                MessageBox.Show("Database niet gekopieerd", "Vereniging - Leden",
+                                  MessageBoxButtons.OK,
+                                   MessageBoxIcon.Error);
+        }
+
+        private void BtnCopyDb_MouseUp(object sender, MouseEventArgs e)
+        {
+            CopyDb();
+        }
     }
+
+    
 }
