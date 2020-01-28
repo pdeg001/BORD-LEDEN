@@ -1,10 +1,12 @@
-﻿using Squirrel;
+﻿using Newtonsoft.Json;
+using Squirrel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -271,7 +273,7 @@ namespace scorebord_leden
             GenFunction.GetLvPervIndexAfterDelete(lst, index);
         }
 
-        private void CloseApplication()
+        private void AskCloseApplication()
         {
             var result = MessageBox.Show("Applicatie sluiten", "Vereniging - Leden",
                                    MessageBoxButtons.YesNo,
@@ -289,13 +291,10 @@ namespace scorebord_leden
             if (e.KeyCode == Keys.L && e.Alt == true)
                 CreateNewMember();
             if (e.KeyCode == Keys.S && e.Alt == true)
-                CloseApplication();
+                AskCloseApplication();
         }
 
-        private void CloseApplication(object sender, MouseEventArgs e)
-        {
-            CloseApplication();
-        }
+       
 
         
     
@@ -327,7 +326,79 @@ namespace scorebord_leden
         {
             CopyDb();
         }
-    }
 
+        private void btnCloseApp_Click(object sender, EventArgs e)
+        {
+            AskCloseApplication();
+        }
+
+        private void CloseApplication(object sender, FormClosingEventArgs e)
+        {
+            AskCloseApplication();
+        }
     
-}
+        private void GenerateVerJson()
+        {
+            string clubName;
+            int clubId;
+            for (int i = 0; i < lstClub.Items.Count; i++)
+            {
+                ListViewItem item = lstClub.Items[i];
+                clubName = item.Text;
+                clubId = Int32.Parse(item.Tag.ToString()); ;
+                Console.WriteLine($"{clubName} - {clubId}");
+                GenJsonFile(clubId, clubName);
+            }
+        }
+
+        private void GenJsonFile(int clubId, string clubName)
+        {
+            DataSet dataSet = new DataSet("dataSet");
+            dataSet.Namespace = "NetFrameWork";
+            DataTable table = new DataTable();
+            table.TableName = clubName;
+           // DataColumn idColumn = new DataColumn("id", typeof(int));
+           // idColumn.AutoIncrement = true;
+
+            DataColumn itemColumn = new DataColumn("name");
+           // table.Columns.Add(idColumn);
+            table.Columns.Add(itemColumn);
+            dataSet.Tables.Add(table);
+           
+            LedenModel lm = new LedenModel();
+            lm.IdClub = clubId;
+
+            leden = SqliteDataAccess.GetLeden(lm);
+
+            foreach (var ledenList in leden)
+            {
+                DataRow newRow = table.NewRow();
+                newRow["name"] = ledenList.Name;
+                table.Rows.Add(newRow);
+            }
+
+            //for (int i = 0; leden.s < 2; i++)
+            //{
+            //    DataRow newRow = table.NewRow();
+            //    newRow["name"] = "item " + i;
+            //    table.Rows.Add(newRow);
+            //}
+
+            dataSet.AcceptChanges();
+            string json = JsonConvert.SerializeObject(dataSet, Formatting.Indented);
+
+            string path = $@"{GenFunction.SelectFolder()}\{clubName}.json";
+            using (var tw = new StreamWriter(path, false))
+            {
+                tw.WriteLine(json);
+                tw.Close();
+            }
+            Console.WriteLine(json);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            GenerateVerJson();
+        }
+    }
+ }

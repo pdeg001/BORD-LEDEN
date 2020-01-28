@@ -41,6 +41,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnCloseApp = new System.Windows.Forms.Button();
             this.BtnCopyDb = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstClub
@@ -173,7 +174,7 @@
             this.btnCloseApp.TabIndex = 7;
             this.btnCloseApp.Text = "Af&sluiten";
             this.btnCloseApp.UseVisualStyleBackColor = true;
-            this.btnCloseApp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CloseApplication);
+            this.btnCloseApp.Click += new System.EventHandler(this.btnCloseApp_Click);
             // 
             // BtnCopyDb
             // 
@@ -186,11 +187,23 @@
             this.BtnCopyDb.UseVisualStyleBackColor = true;
             this.BtnCopyDb.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnCopyDb_MouseUp);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(465, 621);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(863, 713);
+            this.ControlBox = false;
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.BtnCopyDb);
             this.Controls.Add(this.btnCloseApp);
             this.Controls.Add(this.btnDeleteMember);
@@ -228,6 +241,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnCloseApp;
         private System.Windows.Forms.Button BtnCopyDb;
+        private System.Windows.Forms.Button button2;
     }
 }
 
