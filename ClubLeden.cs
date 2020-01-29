@@ -381,6 +381,10 @@ namespace scorebord_leden
                                   MessageBoxButtons.OK,
                                    MessageBoxIcon.Error);
             }
+
+            _ = MessageBox.Show("Bestanden gegenereerd", "Vereniging - Leden",
+                              MessageBoxButtons.OK,
+                               MessageBoxIcon.Information);
         }
 
         private Boolean GenJsonFile(int clubId, string clubName, string path)
