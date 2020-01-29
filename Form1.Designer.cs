@@ -41,7 +41,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnCloseApp = new System.Windows.Forms.Button();
             this.BtnCopyDb = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstClub
@@ -181,29 +180,17 @@
             this.BtnCopyDb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnCopyDb.Location = new System.Drawing.Point(12, 654);
             this.BtnCopyDb.Name = "BtnCopyDb";
-            this.BtnCopyDb.Size = new System.Drawing.Size(159, 35);
+            this.BtnCopyDb.Size = new System.Drawing.Size(190, 35);
             this.BtnCopyDb.TabIndex = 8;
-            this.BtnCopyDb.Text = "Database kopiëren";
+            this.BtnCopyDb.Text = "Genereer data bestanden";
             this.BtnCopyDb.UseVisualStyleBackColor = true;
-            this.BtnCopyDb.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnCopyDb_MouseUp);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(465, 621);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.BtnCopyDb.Click += new System.EventHandler(this.BtnCopyDb_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(863, 713);
-            this.ControlBox = false;
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.BtnCopyDb);
             this.Controls.Add(this.btnCloseApp);
             this.Controls.Add(this.btnDeleteMember);
@@ -220,6 +207,7 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Club Leden";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             this.ResumeLayout(false);
@@ -241,7 +229,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnCloseApp;
         private System.Windows.Forms.Button BtnCopyDb;
-        private System.Windows.Forms.Button button2;
     }
 }
 
