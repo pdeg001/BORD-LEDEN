@@ -157,6 +157,8 @@
     <Compile Include="ClubLeden.Designer.cs">
       <DependentUpon>ClubLeden.cs</DependentUpon>
     </Compile>
+    <Compile Include="DisciplineModel.cs" />
+    <Compile Include="DisciplineLedenModel.cs" />
     <Compile Include="GenFunction.cs" />
     <Compile Include="LedenModel.cs" />
     <Compile Include="MessageBoxManager.cs" />

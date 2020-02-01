@@ -22,12 +22,13 @@ namespace scorebord_leden
         List<LedenModel> leden = new List<LedenModel>();
         int clubId;
         public static MessageBoxManager MessageBoxManager = new MessageBoxManager();
+        Boolean btnClosed = false;
 
         public MainForm()
         {
             InitializeComponent();
             CheckForUpdate();
-            AddVersionNumber();
+          //  AddVersionNumber();
         }
 
         private async Task CheckForUpdate()
@@ -37,19 +38,13 @@ namespace scorebord_leden
                 await manager.UpdateApp();
             }
         }
-
-        private void AddVersionNumber()
-        {
-            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
-
-            this.Text += $" v{versionInfo.FileVersion}";
-        }
+      
         private void MainForm_Load(object sender, EventArgs e)
         {
             SetMbm();
             SetClubList();
             GenFunction.SetLvFirstRow(lstClub);
+            this.Text += GenFunction.GetVersionNumber();
         }
 
         private void SetMbm()
@@ -170,16 +165,16 @@ namespace scorebord_leden
             }
 
 
-#if DEBUG == false
+//#if DEBUG == false
            
-            var result = MessageBox.Show("Vereniging verwijderen?\nDit kan niet ongedaan gemaakt worden!", "Vereniging - Leden",
-                                   MessageBoxButtons.YesNo,
-                                    MessageBoxIcon.Question);
-            if(result == DialogResult.No)
-            {
-                return;
-            }
-#endif
+//            var result = MessageBox.Show("Vereniging verwijderen?\nDit kan niet ongedaan gemaakt worden!", "Vereniging - Leden",
+//                                   MessageBoxButtons.YesNo,
+//                                    MessageBoxIcon.Question);
+//            if(result == DialogResult.No)
+//            {
+//                return;
+//            }
+//#endif
             ListViewItem item = lst.SelectedItems[0];
             ClubModel clubModel = new ClubModel();
             clubModel.Id = Int32.Parse(item.Tag.ToString());
@@ -297,6 +292,7 @@ namespace scorebord_leden
                                     MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
+                btnClosed = true;
                 Application.Exit();
             }
         }
@@ -355,10 +351,11 @@ namespace scorebord_leden
             int clubId;
             Boolean err;
 
-            string path = GenFunction.SelectFolder() + @"\";
+            string path = GenFunction.SelectFolder();
             if (path == "" || path == null)
                 return;
 
+            path += @"\";
             try
             {
                 for (int i = 0; i < lstClub.Items.Count; i++)
@@ -444,11 +441,36 @@ namespace scorebord_leden
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (btnClosed == true)
+                return;
+
             var result = MessageBox.Show("Applicatie sluiten", "Vereniging - Leden",
                                    MessageBoxButtons.YesNo,
                                     MessageBoxIcon.Question);
 
             e.Cancel = result == DialogResult.No;
+        }
+
+        public void chkKnbbSpelers_CheckedChanged(object sender, EventArgs e)
+        {
+            
+                
+            BondsLeden knbbSpelers = new BondsLeden();
+
+            knbbSpelers.Location = this.Location;
+            //knbbSpelers.Top = this.Top;
+            //knbbSpelers.Left = this.Left;
+            //knbbSpelers.Height = this.Height;
+            //knbbSpelers.Width = this.Width;
+            knbbSpelers.Show();
+            MessageBoxManager.Unregister();
+            this.Hide();
+        }
+
+        public void ShowVereniging()
+        {
+            
+            Opacity = 100;
         }
 
     }

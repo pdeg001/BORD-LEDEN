@@ -16,5 +16,26 @@ namespace scorebord_leden
         {
             InitializeComponent();
         }
+
+        private void chkKnbbSpelers_CheckedChanged(object sender, EventArgs e)
+        {
+            MainForm frm = new MainForm
+            {
+                Top = this.Top,
+                Left = this.Left,
+                Height = this.Height,
+                Width = this.Width
+            };
+
+            frm.Show();
+            this.Hide();
+
+
+        }
+
+        private void BondsLeden_Load(object sender, EventArgs e)
+        {
+            this.Text += GenFunction.GetVersionNumber();
+        }
     }
 }
