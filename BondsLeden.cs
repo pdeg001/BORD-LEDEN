@@ -27,8 +27,9 @@ namespace scorebord_leden
                 Width = this.Width
             };
 
-            frm.Show();
             this.Hide();
+            
+            frm.ShowVereniging();
 
 
         }

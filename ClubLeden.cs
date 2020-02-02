@@ -41,6 +41,7 @@ namespace scorebord_leden
       
         private void MainForm_Load(object sender, EventArgs e)
         {
+            AllowTransparency = true;
             SetMbm();
             SetClubList();
             GenFunction.SetLvFirstRow(lstClub);
@@ -389,7 +390,7 @@ namespace scorebord_leden
             DataSet dataSet = new DataSet("dataSet");
             dataSet.Namespace = "NetFrameWork";
             DataTable table = new DataTable();
-            table.TableName = clubName;
+            table.TableName = "LedenLijst"; // clubName;
 
             DataColumn itemColumn = new DataColumn("name");
 
@@ -453,8 +454,8 @@ namespace scorebord_leden
 
         public void chkKnbbSpelers_CheckedChanged(object sender, EventArgs e)
         {
-            
-                
+
+            Opacity = 0;
             BondsLeden knbbSpelers = new BondsLeden();
 
             knbbSpelers.Location = this.Location;
@@ -464,12 +465,18 @@ namespace scorebord_leden
             //knbbSpelers.Width = this.Width;
             knbbSpelers.Show();
             MessageBoxManager.Unregister();
-            this.Hide();
+           // this.Hide();
         }
 
         public void ShowVereniging()
         {
-            
+            double opacity = 0.00;
+            while(opacity < 1)
+            {
+                Console.WriteLine("OPACITY : " + opacity);
+                Opacity = opacity;
+                opacity += 0.04;
+            }
             Opacity = 100;
         }
 

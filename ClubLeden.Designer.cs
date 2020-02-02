@@ -107,8 +107,8 @@
             // btnNewClub
             // 
             this.btnNewClub.BackColor = System.Drawing.SystemColors.Control;
+            this.btnNewClub.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnNewClub.Font = new System.Drawing.Font("Segoe UI Semilight", 12F);
-            this.btnNewClub.ForeColor = System.Drawing.Color.RoyalBlue;
             this.btnNewClub.Location = new System.Drawing.Point(300, 584);
             this.btnNewClub.Name = "btnNewClub";
             this.btnNewClub.Size = new System.Drawing.Size(85, 35);
@@ -120,8 +120,8 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.SystemColors.Control;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button1.Font = new System.Drawing.Font("Segoe UI Semilight", 12F);
-            this.button1.ForeColor = System.Drawing.Color.RoyalBlue;
             this.button1.Location = new System.Drawing.Point(765, 584);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(85, 35);
@@ -133,8 +133,8 @@
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.SystemColors.Control;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI Semilight", 12F);
-            this.btnDelete.ForeColor = System.Drawing.Color.RoyalBlue;
             this.btnDelete.Location = new System.Drawing.Point(12, 585);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(85, 35);
@@ -146,8 +146,8 @@
             // btnDeleteMember
             // 
             this.btnDeleteMember.BackColor = System.Drawing.SystemColors.Control;
+            this.btnDeleteMember.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnDeleteMember.Font = new System.Drawing.Font("Segoe UI Semilight", 12F);
-            this.btnDeleteMember.ForeColor = System.Drawing.Color.RoyalBlue;
             this.btnDeleteMember.Location = new System.Drawing.Point(671, 584);
             this.btnDeleteMember.Name = "btnDeleteMember";
             this.btnDeleteMember.Size = new System.Drawing.Size(85, 35);
@@ -168,7 +168,7 @@
             // 
             // btnCloseApp
             // 
-            this.btnCloseApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCloseApp.Font = new System.Drawing.Font("Segoe UI Semilight", 12F);
             this.btnCloseApp.Location = new System.Drawing.Point(765, 654);
             this.btnCloseApp.Name = "btnCloseApp";
             this.btnCloseApp.Size = new System.Drawing.Size(85, 35);
@@ -179,7 +179,7 @@
             // 
             // BtnCopyDb
             // 
-            this.BtnCopyDb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCopyDb.Font = new System.Drawing.Font("Segoe UI Semilight", 12F);
             this.BtnCopyDb.Location = new System.Drawing.Point(12, 654);
             this.BtnCopyDb.Name = "BtnCopyDb";
             this.BtnCopyDb.Size = new System.Drawing.Size(190, 35);
@@ -199,6 +199,7 @@
             this.chkKnbbSpelers.Text = "KNBB Spelers";
             this.chkKnbbSpelers.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkKnbbSpelers.UseVisualStyleBackColor = true;
+            this.chkKnbbSpelers.Visible = false;
             this.chkKnbbSpelers.CheckedChanged += new System.EventHandler(this.chkKnbbSpelers_CheckedChanged);
             // 
             // MainForm
