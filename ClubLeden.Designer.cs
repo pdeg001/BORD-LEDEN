@@ -1,6 +1,6 @@
 ﻿namespace scorebord_leden
 {
-    partial class MainForm
+    partial class ClubLeden
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClubLeden));
             this.lstClub = new System.Windows.Forms.ListView();
             this.colNaam = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label2 = new System.Windows.Forms.Label();
@@ -199,10 +199,9 @@
             this.chkKnbbSpelers.Text = "KNBB Spelers";
             this.chkKnbbSpelers.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkKnbbSpelers.UseVisualStyleBackColor = true;
-            this.chkKnbbSpelers.Visible = false;
             this.chkKnbbSpelers.CheckedChanged += new System.EventHandler(this.chkKnbbSpelers_CheckedChanged);
             // 
-            // MainForm
+            // ClubLeden
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -222,7 +221,7 @@
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.Name = "MainForm";
+            this.Name = "ClubLeden";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Club Leden";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);

@@ -12,19 +12,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-//TODO : GEN GENERIC MESSAGEBOX
+
 
 namespace scorebord_leden
 {
-    public partial class MainForm : Form
+    public partial class ClubLeden : Form
     {
         List<ClubModel> vereniging = new List<ClubModel>();
         List<LedenModel> leden = new List<LedenModel>();
         int clubId;
         public static MessageBoxManager MessageBoxManager = new MessageBoxManager();
+        public static BondsLeden frmBondsLeden = new BondsLeden();
+
         Boolean btnClosed = false;
 
-        public MainForm()
+        public ClubLeden()
         {
             InitializeComponent();
             CheckForUpdate();
@@ -41,11 +43,12 @@ namespace scorebord_leden
       
         private void MainForm_Load(object sender, EventArgs e)
         {
-            AllowTransparency = true;
+          //  AllowTransparency = true;
             SetMbm();
             SetClubList();
             GenFunction.SetLvFirstRow(lstClub);
             this.Text += GenFunction.GetVersionNumber();
+            
         }
 
         private void SetMbm()
@@ -294,6 +297,7 @@ namespace scorebord_leden
             if (result == DialogResult.Yes)
             {
                 btnClosed = true;
+                System.Threading.Thread.Sleep(100);
                 Application.Exit();
             }
         }
@@ -454,30 +458,27 @@ namespace scorebord_leden
 
         public void chkKnbbSpelers_CheckedChanged(object sender, EventArgs e)
         {
-
-            Opacity = 0;
-            BondsLeden knbbSpelers = new BondsLeden();
-
-            knbbSpelers.Location = this.Location;
-            //knbbSpelers.Top = this.Top;
-            //knbbSpelers.Left = this.Left;
-            //knbbSpelers.Height = this.Height;
-            //knbbSpelers.Width = this.Width;
-            knbbSpelers.Show();
+            chkKnbbSpelers.Checked = false;
+                        
             MessageBoxManager.Unregister();
-           // this.Hide();
+            (new BondsLeden()).Show();
+            this.Visible = false;
+            //frmBondsLeden.Location = Location;
+            //this.Visible = false;
+            //frmBondsLeden.Visible = true;
         }
 
         public void ShowVereniging()
         {
+            this.Opacity = 0.00;
             double opacity = 0.00;
             while(opacity < 1)
             {
                 Console.WriteLine("OPACITY : " + opacity);
-                Opacity = opacity;
+                this.Opacity = opacity;
                 opacity += 0.04;
             }
-            Opacity = 100;
+            this.Opacity = 1.00;
         }
 
     }

@@ -19,17 +19,14 @@ namespace scorebord_leden
 
         private void chkKnbbSpelers_CheckedChanged(object sender, EventArgs e)
         {
-            MainForm frm = new MainForm
-            {
-                Top = this.Top,
-                Left = this.Left,
-                Height = this.Height,
-                Width = this.Width
-            };
-
-            this.Hide();
+                      
+            ClubLeden frm = new ClubLeden();
+            frm.Visible = true;
+                
+            this.Visible = false;
             
-            frm.ShowVereniging();
+            //System.Threading.Thread.Sleep(100);
+
 
 
         }
