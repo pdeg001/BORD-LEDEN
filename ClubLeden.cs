@@ -461,10 +461,10 @@ namespace scorebord_leden
         private void Btn_Knbb_Spelers_Click(object sender, EventArgs e)
         {
 
-            //(new BondsLeden()).Show(this);
+          //(new BondsLeden()).Show(this);
             knbbForm.StartPosition = FormStartPosition.Manual;
             knbbForm.Location = Location;
-            knbbForm.Show(this); 
+            knbbForm.Show(this);
             this.Hide();
         }
     }
