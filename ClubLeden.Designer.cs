@@ -41,7 +41,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnCloseApp = new System.Windows.Forms.Button();
             this.BtnCopyDb = new System.Windows.Forms.Button();
-            this.chkKnbbSpelers = new System.Windows.Forms.CheckBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Btn_Knbb_Spelers = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstClub
@@ -188,18 +189,23 @@
             this.BtnCopyDb.UseVisualStyleBackColor = true;
             this.BtnCopyDb.Click += new System.EventHandler(this.BtnCopyDb_Click);
             // 
-            // chkKnbbSpelers
+            // textBox1
             // 
-            this.chkKnbbSpelers.AutoSize = true;
-            this.chkKnbbSpelers.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.chkKnbbSpelers.Location = new System.Drawing.Point(682, 9);
-            this.chkKnbbSpelers.Name = "chkKnbbSpelers";
-            this.chkKnbbSpelers.Size = new System.Drawing.Size(137, 24);
-            this.chkKnbbSpelers.TabIndex = 9;
-            this.chkKnbbSpelers.Text = "KNBB Spelers";
-            this.chkKnbbSpelers.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkKnbbSpelers.UseVisualStyleBackColor = true;
-            this.chkKnbbSpelers.CheckedChanged += new System.EventHandler(this.chkKnbbSpelers_CheckedChanged);
+            this.textBox1.Location = new System.Drawing.Point(462, 600);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(150, 20);
+            this.textBox1.TabIndex = 10;
+            // 
+            // Btn_Knbb_Spelers
+            // 
+            this.Btn_Knbb_Spelers.Font = new System.Drawing.Font("Segoe UI Semilight", 12F);
+            this.Btn_Knbb_Spelers.Location = new System.Drawing.Point(660, 2);
+            this.Btn_Knbb_Spelers.Name = "Btn_Knbb_Spelers";
+            this.Btn_Knbb_Spelers.Size = new System.Drawing.Size(190, 27);
+            this.Btn_Knbb_Spelers.TabIndex = 11;
+            this.Btn_Knbb_Spelers.Text = "KNBB Spelers";
+            this.Btn_Knbb_Spelers.UseVisualStyleBackColor = true;
+            this.Btn_Knbb_Spelers.Click += new System.EventHandler(this.Btn_Knbb_Spelers_Click);
             // 
             // ClubLeden
             // 
@@ -207,7 +213,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(863, 713);
-            this.Controls.Add(this.chkKnbbSpelers);
+            this.Controls.Add(this.Btn_Knbb_Spelers);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.BtnCopyDb);
             this.Controls.Add(this.btnCloseApp);
             this.Controls.Add(this.btnDeleteMember);
@@ -219,8 +226,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lstClub);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.MaximizeBox = false;
             this.Name = "ClubLeden";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Club Leden";
@@ -246,7 +255,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnCloseApp;
         private System.Windows.Forms.Button BtnCopyDb;
-        private System.Windows.Forms.CheckBox chkKnbbSpelers;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button Btn_Knbb_Spelers;
     }
 }
 

@@ -21,8 +21,9 @@ namespace scorebord_leden
         List<ClubModel> vereniging = new List<ClubModel>();
         List<LedenModel> leden = new List<LedenModel>();
         int clubId;
+        
         public static MessageBoxManager MessageBoxManager = new MessageBoxManager();
-        public static BondsLeden frmBondsLeden = new BondsLeden();
+        public static BondsLeden knbbForm = new BondsLeden();
 
         Boolean btnClosed = false;
 
@@ -30,7 +31,7 @@ namespace scorebord_leden
         {
             InitializeComponent();
             CheckForUpdate();
-          //  AddVersionNumber();
+            
         }
 
         private async Task CheckForUpdate()
@@ -48,6 +49,7 @@ namespace scorebord_leden
             SetClubList();
             GenFunction.SetLvFirstRow(lstClub);
             this.Text += GenFunction.GetVersionNumber();
+            
             
         }
 
@@ -456,30 +458,14 @@ namespace scorebord_leden
             e.Cancel = result == DialogResult.No;
         }
 
-        public void chkKnbbSpelers_CheckedChanged(object sender, EventArgs e)
+        private void Btn_Knbb_Spelers_Click(object sender, EventArgs e)
         {
-            chkKnbbSpelers.Checked = false;
-                        
-            MessageBoxManager.Unregister();
-            (new BondsLeden()).Show();
-            this.Visible = false;
-            //frmBondsLeden.Location = Location;
-            //this.Visible = false;
-            //frmBondsLeden.Visible = true;
-        }
 
-        public void ShowVereniging()
-        {
-            this.Opacity = 0.00;
-            double opacity = 0.00;
-            while(opacity < 1)
-            {
-                Console.WriteLine("OPACITY : " + opacity);
-                this.Opacity = opacity;
-                opacity += 0.04;
-            }
-            this.Opacity = 1.00;
+            //(new BondsLeden()).Show(this);
+            knbbForm.StartPosition = FormStartPosition.Manual;
+            knbbForm.Location = Location;
+            knbbForm.Show(this); 
+            this.Hide();
         }
-
     }
 }

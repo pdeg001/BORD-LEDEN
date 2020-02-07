@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BondsLeden));
-            this.chkKnbbSpelers = new System.Windows.Forms.CheckBox();
             this.lstClub = new System.Windows.Forms.ListView();
             this.colNaam = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lstMember = new System.Windows.Forms.ListView();
@@ -38,20 +37,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnNewClub = new System.Windows.Forms.Button();
+            this.Btn_Knbb_Spelers = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // chkKnbbSpelers
-            // 
-            this.chkKnbbSpelers.AutoSize = true;
-            this.chkKnbbSpelers.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.chkKnbbSpelers.Location = new System.Drawing.Point(682, 9);
-            this.chkKnbbSpelers.Name = "chkKnbbSpelers";
-            this.chkKnbbSpelers.Size = new System.Drawing.Size(178, 24);
-            this.chkKnbbSpelers.TabIndex = 10;
-            this.chkKnbbSpelers.Text = "Verenigings Spelers";
-            this.chkKnbbSpelers.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkKnbbSpelers.UseVisualStyleBackColor = true;
-            this.chkKnbbSpelers.CheckedChanged += new System.EventHandler(this.chkKnbbSpelers_CheckedChanged);
             // 
             // lstClub
             // 
@@ -102,8 +90,8 @@
             // btnDeleteMember
             // 
             this.btnDeleteMember.BackColor = System.Drawing.SystemColors.Control;
+            this.btnDeleteMember.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnDeleteMember.Font = new System.Drawing.Font("Segoe UI Semilight", 12F);
-            this.btnDeleteMember.ForeColor = System.Drawing.Color.RoyalBlue;
             this.btnDeleteMember.Location = new System.Drawing.Point(671, 584);
             this.btnDeleteMember.Name = "btnDeleteMember";
             this.btnDeleteMember.Size = new System.Drawing.Size(85, 35);
@@ -114,8 +102,8 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.SystemColors.Control;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button1.Font = new System.Drawing.Font("Segoe UI Semilight", 12F);
-            this.button1.ForeColor = System.Drawing.Color.RoyalBlue;
             this.button1.Location = new System.Drawing.Point(765, 584);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(85, 35);
@@ -126,8 +114,8 @@
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.SystemColors.Control;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI Semilight", 12F);
-            this.btnDelete.ForeColor = System.Drawing.Color.RoyalBlue;
             this.btnDelete.Location = new System.Drawing.Point(12, 585);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(85, 35);
@@ -138,8 +126,8 @@
             // btnNewClub
             // 
             this.btnNewClub.BackColor = System.Drawing.SystemColors.Control;
+            this.btnNewClub.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnNewClub.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNewClub.ForeColor = System.Drawing.Color.RoyalBlue;
             this.btnNewClub.Location = new System.Drawing.Point(300, 584);
             this.btnNewClub.Name = "btnNewClub";
             this.btnNewClub.Size = new System.Drawing.Size(85, 35);
@@ -147,32 +135,52 @@
             this.btnNewClub.Text = "&Nieuw";
             this.btnNewClub.UseVisualStyleBackColor = false;
             // 
+            // Btn_Knbb_Spelers
+            // 
+            this.Btn_Knbb_Spelers.Font = new System.Drawing.Font("Segoe UI Semilight", 12F);
+            this.Btn_Knbb_Spelers.Location = new System.Drawing.Point(660, 2);
+            this.Btn_Knbb_Spelers.Name = "Btn_Knbb_Spelers";
+            this.Btn_Knbb_Spelers.Size = new System.Drawing.Size(190, 27);
+            this.Btn_Knbb_Spelers.TabIndex = 18;
+            this.Btn_Knbb_Spelers.Text = "Club Spelers";
+            this.Btn_Knbb_Spelers.UseVisualStyleBackColor = true;
+            this.Btn_Knbb_Spelers.Click += new System.EventHandler(this.Btn_Knbb_Spelers_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(412, 613);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(115, 33);
+            this.button2.TabIndex = 19;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // BondsLeden
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(863, 713);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.Btn_Knbb_Spelers);
             this.Controls.Add(this.btnDeleteMember);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnNewClub);
             this.Controls.Add(this.lstMember);
             this.Controls.Add(this.lstClub);
-            this.Controls.Add(this.chkKnbbSpelers);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "BondsLeden";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bonds Leden";
             this.Load += new System.EventHandler(this.BondsLeden_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.CheckBox chkKnbbSpelers;
         private System.Windows.Forms.ListView lstClub;
         private System.Windows.Forms.ColumnHeader colNaam;
         private System.Windows.Forms.ListView lstMember;
@@ -181,5 +189,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnNewClub;
+        private System.Windows.Forms.Button Btn_Knbb_Spelers;
+        private System.Windows.Forms.Button button2;
     }
 }
