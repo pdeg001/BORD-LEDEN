@@ -30,7 +30,7 @@ namespace scorebord_leden
         public ClubLeden()
         {
             InitializeComponent();
-            CheckForUpdate();
+         //   CheckForUpdate();
             
         }
 
@@ -49,8 +49,9 @@ namespace scorebord_leden
             SetClubList();
             GenFunction.SetLvFirstRow(lstClub);
             this.Text += GenFunction.GetVersionNumber();
-            
-            
+            lstClub.Columns[0].Width = lstClub.Width - 2;
+            lstMember.Columns[0].Width = lstMember.Width - 20;
+
         }
 
         private void SetMbm()
@@ -148,6 +149,14 @@ namespace scorebord_leden
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
+            ListView lst = lstClub;
+            int index = GenFunction.GetLvIndex(lst);
+
+            if (index == -1)
+            {
+                return;
+            }
+
             ListView lstMem = lstMember;
             if (lstMember.Items.Count > 0)
             {
@@ -163,8 +172,8 @@ namespace scorebord_leden
             {
                 return;
             }
-            ListView lst = lstClub;
-            int index = GenFunction.GetLvIndex(lst);
+          //  ListView lst = lstClub;
+          //  int index = GenFunction.GetLvIndex(lst);
             if (lst.SelectedItems.Count == 0)
             {
                 return;
@@ -438,7 +447,7 @@ namespace scorebord_leden
             finally
             {
             }
-            Console.WriteLine(json);
+            //Console.WriteLine(json);
         }
 
         private void BtnCopyDb_Click(object sender, EventArgs e)

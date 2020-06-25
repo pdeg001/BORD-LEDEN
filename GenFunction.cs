@@ -48,7 +48,7 @@ namespace scorebord_leden
         {
             int itemCount = GetLvItemCount(lv);
 
-            if (itemCount >= 0)
+            if (itemCount >= 1)
             {
                 lv.Items[prevIndex - 1].Selected = true;
                 lv.Select();
@@ -71,7 +71,7 @@ namespace scorebord_leden
         public static void SetLvFirstRow(ListView lv)
         {
             int index = GetLvIndex(lv);
-            if (index == 0)
+            if (index == 0 || index == -1)
                 return;
             lv.Items[0].Selected = true;
             lv.Select();

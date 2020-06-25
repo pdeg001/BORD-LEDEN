@@ -68,7 +68,7 @@
             // colNaam
             // 
             this.colNaam.Text = "Naam";
-            this.colNaam.Width = 271;
+            this.colNaam.Width = 369;
             // 
             // label2
             // 
@@ -109,7 +109,7 @@
             // 
             this.btnNewClub.BackColor = System.Drawing.SystemColors.Control;
             this.btnNewClub.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnNewClub.Font = new System.Drawing.Font("Segoe UI Semilight", 12F);
+            this.btnNewClub.Font = new System.Drawing.Font("Segoe UI Semilight", 10F);
             this.btnNewClub.Location = new System.Drawing.Point(300, 584);
             this.btnNewClub.Name = "btnNewClub";
             this.btnNewClub.Size = new System.Drawing.Size(85, 35);
@@ -122,7 +122,7 @@
             // 
             this.button1.BackColor = System.Drawing.SystemColors.Control;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button1.Font = new System.Drawing.Font("Segoe UI Semilight", 12F);
+            this.button1.Font = new System.Drawing.Font("Segoe UI Semilight", 10F);
             this.button1.Location = new System.Drawing.Point(765, 584);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(85, 35);
@@ -135,7 +135,7 @@
             // 
             this.btnDelete.BackColor = System.Drawing.SystemColors.Control;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnDelete.Font = new System.Drawing.Font("Segoe UI Semilight", 12F);
+            this.btnDelete.Font = new System.Drawing.Font("Segoe UI Semilight", 10F);
             this.btnDelete.Location = new System.Drawing.Point(12, 585);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(85, 35);
@@ -148,7 +148,7 @@
             // 
             this.btnDeleteMember.BackColor = System.Drawing.SystemColors.Control;
             this.btnDeleteMember.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnDeleteMember.Font = new System.Drawing.Font("Segoe UI Semilight", 12F);
+            this.btnDeleteMember.Font = new System.Drawing.Font("Segoe UI Semilight", 10F);
             this.btnDeleteMember.Location = new System.Drawing.Point(671, 584);
             this.btnDeleteMember.Name = "btnDeleteMember";
             this.btnDeleteMember.Size = new System.Drawing.Size(85, 35);
@@ -169,7 +169,7 @@
             // 
             // btnCloseApp
             // 
-            this.btnCloseApp.Font = new System.Drawing.Font("Segoe UI Semilight", 12F);
+            this.btnCloseApp.Font = new System.Drawing.Font("Segoe UI Semilight", 10F);
             this.btnCloseApp.Location = new System.Drawing.Point(765, 654);
             this.btnCloseApp.Name = "btnCloseApp";
             this.btnCloseApp.Size = new System.Drawing.Size(85, 35);
@@ -180,7 +180,7 @@
             // 
             // BtnCopyDb
             // 
-            this.BtnCopyDb.Font = new System.Drawing.Font("Segoe UI Semilight", 12F);
+            this.BtnCopyDb.Font = new System.Drawing.Font("Segoe UI Semilight", 10F);
             this.BtnCopyDb.Location = new System.Drawing.Point(12, 654);
             this.BtnCopyDb.Name = "BtnCopyDb";
             this.BtnCopyDb.Size = new System.Drawing.Size(190, 35);
@@ -195,6 +195,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(150, 20);
             this.textBox1.TabIndex = 10;
+            this.textBox1.Visible = false;
             // 
             // Btn_Knbb_Spelers
             // 
@@ -205,6 +206,7 @@
             this.Btn_Knbb_Spelers.TabIndex = 11;
             this.Btn_Knbb_Spelers.Text = "KNBB Spelers";
             this.Btn_Knbb_Spelers.UseVisualStyleBackColor = true;
+            this.Btn_Knbb_Spelers.Visible = false;
             this.Btn_Knbb_Spelers.Click += new System.EventHandler(this.Btn_Knbb_Spelers_Click);
             // 
             // ClubLeden
